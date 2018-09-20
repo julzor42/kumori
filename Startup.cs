@@ -50,6 +50,9 @@ namespace kumori
             }
 
             app.UseCors("CorsPolicy");
+
+            // Serve documents from wwwroot
+            app.UseDefaultFiles();
             app.UseStaticFiles();
 
             app.UseHttpsRedirection();

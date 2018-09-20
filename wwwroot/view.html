@@ -2,78 +2,79 @@
 <html>
 
 <head>
-    <title>Notifications</title>
+        <title>Notifications</title>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-                <script src="http://kumori.astralis.fr/kumori.js"></script>
-                    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
-                        <style type="text/css">
-                                #holder {
-                                            width: 640px;
-                                                    }
-                                                    
-                                                            #holder .panel-body {
-                                                                        height: 120px;
-                                                                                    overflow-y: scroll;
-                                                                                            }
-                                                                                            
-                                                                                                    .notification {
-                                                                                                                font-family: Verdana, Geneva, Tahoma, sans-serif;
-                                                                                                                            font-size: 10px;
-                                                                                                                                    }
-                                                                                                                                    
-                                                                                                                                            .notification .date {
-                                                                                                                                                        color: gray;
-                                                                                                                                                                }
-                                                                                                                                                                
-                                                                                                                                                                        .notification:nth-child(odd) {
-                                                                                                                                                                                    background-color: lightgray;
-                                                                                                                                                                                            }
-                                                                                                                                                                                            
-                                                                                                                                                                                                    .notification:nth-child(even) {
-                                                                                                                                                                                                                background-color: lightblue;
-                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                        
-                                                                                                                                                                                                                                .notification .title {}
-                                                                                                                                                                                                                                    </style>
-                                                                                                                                                                                                                                    </head>
-                                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                    <body>
-                                                                                                                                                                                                                                        <div id="holder">
-                                                                                                                                                                                                                                                <div class="panel panel-primary">
-                                                                                                                                                                                                                                                            <div class="panel-heading">
-                                                                                                                                                                                                                                                                            Notifications
-                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                                    <div class="panel-body">
-                                                                                                                                                                                                                                                                                                                    <div id="notifications">
-                                                                                                                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                                            <div class="panel-footer">
-                                                                                                                                                                                                                                                                                                                                                                            <a href="#" id="lnkAdd" class="btn btn-primary">Add one</a>
-                                                                                                                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                                                                                                                                        <script>
-                                                                                                                                                                                                                                                                                                                                                                                                                function addClick() {
-                                                                                                                                                                                                                                                                                                                                                                                                                            kumori.addNotification({ title: "Hello :)" }, function (data) { addToList(data); });
-                                                                                                                                                                                                                                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                                                                                                                                                                                                                            function addToList(notification) {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        var date = new Date(Date.parse(notification.created));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    console.log(notification);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                $("#notifications").prepend(`<div class="row notification"><div class="col-md-3 date">[${date.toLocaleDateString()} ${date.toLocaleTimeString()}]</div><div class="col-md-9 title">${notification.title} (${notification.className})</div></div>`);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                $(function () {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            kumori.getNotifications(function (data) {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            for (var i = 0; i < data.length; i++) {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                addToList(data[i]);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            });
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        $("#lnkAdd").click(addClick);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                });
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </script>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </body>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </html>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="kumori.js"></script>
+        
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+        <style type="text/css">
+                #holder {
+                        width: 640px;
+                }
+
+                #holder .panel-body {
+                        height: 120px;
+                        overflow-y: scroll;
+                }
+
+                .notification {
+                        font-family: Verdana, Geneva, Tahoma, sans-serif;
+                        font-size: 10px;
+                }
+
+                .notification .date {
+                        color: gray;
+                }
+
+                .notification:nth-child(odd) {
+                        background-color: lightgray;
+                }
+
+                .notification:nth-child(even) {
+                        background-color: lightblue;
+                }
+
+                .notification .title {}
+        </style>
+</head>
+
+<body>
+        <div id="holder">
+                <div class="panel panel-primary">
+                        <div class="panel-heading">
+                                Notifications
+                        </div>
+                        <div class="panel-body">
+                                <div id="notifications">
+
+                                </div>
+                        </div>
+                        <div class="panel-footer">
+                                <a href="#" id="lnkAdd" class="btn btn-primary">Add one</a>
+                        </div>
+                </div>
+        </div>
+        <script>
+                function addClick() {
+                        kumori.addNotification({ title: "Hello :)" }, function (data) { addToList(data); });
+                }
+
+                function addToList(notification) {
+                        var date = new Date(Date.parse(notification.created));
+                        console.log(notification);
+                        $("#notifications").prepend(`<div class="row notification"><div class="col-md-3 date">[${date.toLocaleDateString()} ${date.toLocaleTimeString()}]</div><div class="col-md-9 title">${notification.title} (${notification.className})</div></div>`);
+                }
+
+                $(function () {
+                        kumori.getNotifications(function (data) {
+                                for (var i = 0; i < data.length; i++) {
+                                        addToList(data[i]);
+                                }
+                        });
+                        $("#lnkAdd").click(addClick);
+                });
+        </script>
+</body>
+
+</html>
