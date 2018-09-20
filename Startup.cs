@@ -27,14 +27,13 @@ namespace kumori
         {
             services.AddCors(options =>
                 {
-                        options.AddPolicy("CorsPolicy",
-                                    builder => builder.AllowAnyOrigin()
-                                                .AllowAnyMethod()
-                                                            .AllowAnyHeader()
-                                                                        .AllowCredentials());
-                                                                            });
-                                                                             
-                                                                             
+                    options.AddPolicy("CorsPolicy",
+                        builder => builder.AllowAnyOrigin()
+                                          .AllowAnyMethod()
+                                          .AllowAnyHeader()
+                                          .AllowCredentials());
+                });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -50,8 +49,8 @@ namespace kumori
                 app.UseHsts();
             }
 
-          app.UseCors("CorsPolicy");
-          app.UseStaticFiles();
+            app.UseCors("CorsPolicy");
+            app.UseStaticFiles();
 
             app.UseHttpsRedirection();
             app.UseMvc();
